@@ -111,7 +111,9 @@ export class PlasmicAction {
       projectApiToken: this.args.projectApiToken,
       platform: this.args.platform,
       scheme: this.args.scheme,
-      useTypescript: this.args.language === "ts",
+      jsOrTs: this.args.language || "ts",
+      platformOptions:
+        this.args.platform === "nextjs" ? { nextjs: { appDir: false } } : {},
     });
     await exec(`rm -rf '${relTmpDir}/.git'`, this.opts);
 
